@@ -5,7 +5,8 @@ import {
   fontSize,
   width,
   fontWeight,
-  lineHeight
+  lineHeight,
+  grid
 } from "styled-system";
 
 export const Style = createGlobalStyle`
@@ -54,6 +55,7 @@ export const Box = styled.div`
   ${width}
   ${fontSize}
   ${color}
+  ${grid}
 `;
 Box.propTypes = {
   ...space.propTypes,
