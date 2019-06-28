@@ -1,0 +1,56 @@
+[
+  {
+    "QueryID": "<query-id>",
+    "RunnerState": {
+      "PeersSeen": 123,
+      "PeersQueried": 123,
+      "PeersDialed": 123,
+      "PeersToQuery": 123,
+      "PeersRemaining": 123,
+      "Result": {
+        "Success": true,
+        "FoundPeer": "Qmfoo...",
+        "CloserPeers": 123,
+        "QueriedPeers": 123,
+        "FinalPeers": 123
+      },
+      "RateLimit": {
+        "Capacity": 10,
+        "Length": 5
+      },
+      "StartTime": "2019-06-28T14:55:40+0000",
+      "CurrTime": "2019-06-28T14:55:40+0000",
+      "EndTime": "2019-06-28T14:55:40+0000"
+    },
+    "PeerQueries": [
+      {
+        "QueryID": "<query-id>",
+        "Order": 1,
+        "PeerID": "Qmfoo...",
+        "XORDistance": [256],
+        "Hops": [1],
+        "Spans": [
+          {
+            "Type": "Dial",
+            "Start": "2019-06-28T14:55:40+0000",
+            "End": "2019-06-28T14:55:40+0000",
+            "Duration": 123456
+          },
+          {
+            "Type": "Request",
+            "Start": "2019-06-28T14:55:40+0000",
+            "End": "2019-06-28T14:55:40+0000",
+            "Duration": 123456
+          }
+        ],
+        "TotalDuration": 123456,
+        "Records": 123,
+
+        "CloserPeersRecv": 123,
+        "CloserPeersNew": 123,
+        "ProviderPeersRecv": 123,
+        "ProviderPeersNew": 123
+      }
+    ]
+  }
+]
