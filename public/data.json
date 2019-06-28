@@ -50,6 +50,34 @@
         "CloserPeersNew": 123,
         "ProviderPeersRecv": 123,
         "ProviderPeersNew": 123
+      },
+      {
+        "QueryID": "<query-id>",
+        "Order": 1,
+        "PeerID": "Qmfoo...",
+        "XORDistance": [256],
+        "Hops": [1],
+        "Spans": [
+          {
+            "Type": "Dial",
+            "Start": "2019-06-28T14:55:40+0000",
+            "End": "2019-06-28T14:55:40+0000",
+            "Duration": 123456
+          },
+          {
+            "Type": "Request",
+            "Start": "2019-06-28T14:55:40+0000",
+            "End": "2019-06-28T14:55:40+0000",
+            "Duration": 123456
+          }
+        ],
+        "TotalDuration": 123456,
+        "Records": 123,
+
+        "CloserPeersRecv": 123,
+        "CloserPeersNew": 123,
+        "ProviderPeersRecv": 123,
+        "ProviderPeersNew": 123
       }
     ]
   }
