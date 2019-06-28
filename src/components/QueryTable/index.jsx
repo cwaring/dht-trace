@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Box } from "../System";
 
-const QuerySection = ({ children }) => <Box>QuerySection: {children}</Box>;
+const QuerySection = ({ QueryID }) => <Box>QuerySection: {QueryID}</Box>;
 const QueryRow = ({ children }) => <Box>QueryRow: {children}</Box>;
 const QueryPeerRow = ({ children }) => <Box>QueryPeerRow: {children}</Box>;
 
-export default () => (
+export default ({ data }) => (
   <Box p={4}>
+    {console.log(data)}
+    {data && data.map(q => <QuerySection key={q.QueryID} {...q} />)}
     <QuerySection>
       <QueryRow>
         <QueryPeerRow />
