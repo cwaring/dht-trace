@@ -2,7 +2,8 @@ import React from "react"
 import { Box, Span, Text } from "../System"
 import styled from 'styled-components'
 
-const presentPeerId = (peerId) => peerId.substring(0, 6) + '…'
+const presentPeerId = (peerId) => peerId.substring(2, 8) + '…'
+const presentQueryId = (peerId) => peerId.substring(0, 6) + '…'
 
 const dateMs = (date) => new Date(date).getTime()
 
@@ -46,7 +47,7 @@ const QuerySection = (props) => {
 
 const QueryRow = ({ QueryID, RunnerState, PeerQueries, TotalDuration }) => (
   <React.Fragment>
-    <Box><Text whiteSpace="nowrap">Query: {presentPeerId(QueryID)}</Text></Box>
+    <Box><Text whiteSpace="nowrap">Query {presentQueryId(QueryID)}</Text></Box>
     <Box textAlign="center">
       <Text>{Math.min(...PeerQueries.map(q => q.XORDistance))}</Text>
     </Box>
