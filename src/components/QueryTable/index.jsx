@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import { Box, Span, Text } from "../System"
 import styled from 'styled-components'
+import './index.css'
 
 const presentPeerId = (peerId) => peerId.substring(2, 8) + '…'
 const presentQueryId = (peerId) => peerId.substring(0, 6) + '…'
@@ -25,11 +26,13 @@ const TableHeader = () => (
 )
 
 const QuerySection = (props) => {
+  const [expanded, setExpanded] = useState(true)
+  const onQueryClick = () => setExpanded(!expanded)
   const total = msDiff(props.RunnerState.StartTime, props.RunnerState.EndTime)
   return (
     <React.Fragment>
-      <QueryRow {...props} TotalDuration={total} />
-      {props.PeerQueries.map(peerQuery => {
+      <QueryRow {...props} TotalDuration={total} onQueryClick={onQueryClick} expanded={expanded} />
+      {expanded && props.PeerQueries.map(peerQuery => {
         const p = {
           ...peerQuery,
           RunnerState: {
@@ -45,9 +48,11 @@ const QuerySection = (props) => {
   )
 }
 
-const QueryRow = ({ QueryID, RunnerState, PeerQueries, TotalDuration }) => (
+const QueryRow = ({ QueryID, RunnerState, PeerQueries, TotalDuration, onQueryClick, expanded }) => (
   <React.Fragment>
-    <Box><Text whiteSpace="nowrap">Query {presentQueryId(QueryID)}</Text></Box>
+    <Box onClick={onQueryClick} className={'query-row ' + (expanded ? 'expanded' : '')}>
+      <Text whiteSpace="nowrap">Query {presentQueryId(QueryID)}</Text>
+    </Box>
     <Box textAlign="center">
       <Text>{Math.min(...PeerQueries.map(q => q.XORDistance))}</Text>
     </Box>

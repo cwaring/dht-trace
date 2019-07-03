@@ -1,0 +1,11 @@
+.query-row {
+  background-image: url(../../icons/right-arrow.png);
+  background-position: left;
+  background-size: 0.75em;
+  background-repeat: no-repeat;
+  padding-left: 1em;
+  cursor: pointer;
+}
+.query-row.expanded {
+  background-image: url(../../icons/down-arrow.png);
+}
