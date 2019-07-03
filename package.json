@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bignumber.js": "^9.0.0",
+    "bs58": "^4.0.1",
+    "d3": "^5.9.7",
+    "multihashing-async": "^0.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
