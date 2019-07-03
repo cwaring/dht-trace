@@ -11,7 +11,7 @@ const msDiff = (date1, date2) => dateMs(date2) - dateMs(date1)
 const niceDuration = (ms) => {
   if (ms < 1000) return ms + 'ms'
   if (ms < 60000) return Math.round(ms / 100) / 10 + 's'
-  return ms / 60000 + 'm' + Math.round((ms % 60000) / 1000) + 's'
+  return Math.floor(ms / 60000) + 'm' + Math.round((ms % 60000) / 1000) + 's'
 }
 
 const TableHeader = () => (
@@ -76,12 +76,17 @@ const QueryPeerRow = ({ RunnerState, PeerID, XORDistance, Hops, CloserPeersNew, 
     <Box textAlign="center"><Text>{Hops}</Text></Box>
     <Box>
       <QueryTimeSpan start={RunnerState.StartTime} end={Spans[0].Start} total={RunnerState.TotalDuration} />
-      {Spans.map(span => (
-        <QueryTimeSpan start={span.Start} end={span.End} total={RunnerState.TotalDuration} type={span.Type} />
-      ))}
+      {Spans.length >= 0 &&
+        <QueryTimeSpan key={0} start={Spans[0].Start} end={Spans[0].End} total={RunnerState.TotalDuration} type={Spans[0].Type} />
+      }
+      {Spans.length >= 2 &&
+        <React.Fragment>
+          <QueryTimeSpan key={1} start={Spans[0].End} end={Spans[1].Start} total={RunnerState.TotalDuration} type="Connected" />
+          <QueryTimeSpan key={2} start={Spans[1].Start} end={Spans[1].End} total={RunnerState.TotalDuration} type={Spans[1].Type} />
+        </React.Fragment>
+      }
       <Text marginLeft="2">
-        {niceDuration(msDiff(RunnerState.StartTime, Spans[0].Start))},
-        {CloserPeersNew}/{CloserPeersRecv} peers
+        {niceDuration(msDiff(RunnerState.StartTime, Spans[0].Start))}, {CloserPeersNew}/{CloserPeersRecv} peers
       </Text>
     </Box>
   </React.Fragment>
@@ -97,7 +102,9 @@ const QueryTimeSpan = ({ start, end, total, type }) => {
   const color = (() => {
     switch (type) {
       case 'Dial': return 'lightgrey'
+      case 'Connected': return 'darkblue'
       case 'Request': return 'lightblue'
+      default: return undefined
     }
   })()
   return <TimeSpan width={timeSpanWidth} bg={color} />

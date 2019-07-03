@@ -6,7 +6,7 @@ import Graph from "./components/Graph/Graph";
 import { makePeer } from "./lib/data/peer"
 
 // system imports
-import { theme, Root, Style, Box, Heading, Text } from "./components/System";
+import { theme, Root, Style, Box, Heading } from "./components/System";
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -18,16 +18,13 @@ export default function App() {
       const response = await fetch("/data.json");
       return await response.json();
     }
-    fetchData().then(data => setData(data));
-  }, []);
-
-  useEffect(() => {
-    async function fetchPeers() {
-      const response = await fetch("/peers.json");
-      const b58s = await response.json();
-      return Promise.all(b58s.map((b58, i) => makePeer(b58, i === 0)))
-    }
-    fetchPeers().then(peers => setPeers(peers));
+    fetchData().then(data => {
+      setData(data)
+      // TODO: this just takes the first query out of the data,
+      // make it work for multiple queries
+      const b58s = data[0].PeerQueries.map(pq => pq.PeerID)
+      Promise.all(b58s.map((b58, i) => makePeer(b58, i === 0))).then(setPeers)
+    });
   }, []);
 
   return (
