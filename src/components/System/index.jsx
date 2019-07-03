@@ -6,7 +6,8 @@ import {
   width,
   fontWeight,
   lineHeight,
-  grid
+  grid,
+  system
 } from "styled-system";
 
 export const Style = createGlobalStyle`
@@ -64,13 +65,33 @@ Box.propTypes = {
   ...color.propTypes
 };
 
-export const Text = styled.div`
-  ${space}
-  ${fontSize}
-  ${fontWeight}
-  ${lineHeight}
-  ${color}
-`;
+export const Span = styled.div(
+  {
+    display: 'inline-block'
+  },
+  space,
+  width,
+  fontSize,
+  color
+);
+Span.propTypes = {
+  ...space.propTypes,
+  ...width.propTypes,
+  ...fontSize.propTypes,
+  ...color.propTypes
+};
+
+export const Text = styled.div(
+  {
+    display: 'inline-block'
+  },
+  space,
+  fontSize,
+  fontWeight,
+  lineHeight,
+  color,
+  system({ whiteSpace: true })
+);
 
 Text.propTypes = {
   ...space.propTypes,
