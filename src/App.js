@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'styled-components';
-import QueryTable from './components/QueryTable';
-import Graph from './components/Graph/Graph';
-import { makePeer } from './lib/data/peer';
+import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
+import { ThemeProvider } from 'styled-components'
+import QueryTable from './components/QueryTable'
+import Graph from './components/Graph/Graph'
+import { makePeer } from './lib/data/peer'
 
 // system imports
-import { theme, Root, Style, Box, Heading } from './components/System';
+import { theme, Root, Style, Box, Heading } from './components/System'
 
-export default function App() {
-  const [data, setData] = useState([]);
-  const [peers, setPeers] = useState([]);
+export default function App () {
+  const [data, setData] = useState([])
+  const [peers, setPeers] = useState([])
   const paths = [
     [0, 1],
     [1, 2],
@@ -20,22 +20,22 @@ export default function App() {
     [4, 6],
     [4, 7],
     [5, 8],
-    [5, 9],
-  ];
+    [5, 9]
+  ]
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('/data.json');
-      return await response.json();
+    async function fetchData () {
+      const response = await fetch('/data.json')
+      return await response.json()
     }
     fetchData().then(data => {
-      setData(data);
+      setData(data)
       // TODO: this just takes the first query out of the data,
       // make it work for multiple queries
-      const b58s = data[0].PeerQueries.map(pq => pq.PeerID);
-      Promise.all(b58s.map((b58, i) => makePeer(b58, i === 0))).then(setPeers);
-    });
-  }, []);
+      const b58s = data[0].PeerQueries.map(pq => pq.PeerID)
+      Promise.all(b58s.map((b58, i) => makePeer(b58, i === 0))).then(setPeers)
+    })
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>
@@ -52,7 +52,7 @@ export default function App() {
         </Box>
       </Root>
     </ThemeProvider>
-  );
+  )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'))
