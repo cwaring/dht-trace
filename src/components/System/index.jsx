@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from 'styled-components';
 import {
   space,
   color,
@@ -7,8 +7,8 @@ import {
   fontWeight,
   lineHeight,
   grid,
-  system
-} from "styled-system";
+  system,
+} from 'styled-system';
 
 export const Style = createGlobalStyle`
 * { box-sizing: border-box; }
@@ -38,12 +38,12 @@ export const theme = {
     32,
     64,
     128,
-    256
+    256,
   ],
   colors: {
-    blue: "#07c",
-    red: "#e10"
-  }
+    blue: '#07c',
+    red: '#e10',
+  },
 };
 
 export const Root = styled.div`
@@ -62,12 +62,12 @@ Box.propTypes = {
   ...space.propTypes,
   ...width.propTypes,
   ...fontSize.propTypes,
-  ...color.propTypes
+  ...color.propTypes,
 };
 
 export const Span = styled.div(
   {
-    display: 'inline-block'
+    display: 'inline-block',
   },
   space,
   width,
@@ -78,12 +78,12 @@ Span.propTypes = {
   ...space.propTypes,
   ...width.propTypes,
   ...fontSize.propTypes,
-  ...color.propTypes
+  ...color.propTypes,
 };
 
 export const Text = styled.div(
   {
-    display: 'inline-block'
+    display: 'inline-block',
   },
   space,
   fontSize,
@@ -98,13 +98,13 @@ Text.propTypes = {
   ...fontSize.propTypes,
   ...fontWeight.propTypes,
   ...lineHeight.propTypes,
-  ...color.propTypes
+  ...color.propTypes,
 };
 
-export const Heading = Text.withComponent("h1");
+export const Heading = Text.withComponent('h1');
 
 Heading.defaultProps = {
   fontSize: 5,
   lineHeight: 1.5,
-  m: 0
+  m: 0,
 };

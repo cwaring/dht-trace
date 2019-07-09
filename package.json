@@ -5,7 +5,10 @@
   "dependencies": {
     "bignumber.js": "^9.0.0",
     "bs58": "^4.0.1",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.1.0",
     "multihashing-async": "^0.7.0",
+    "prettier": "^1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
@@ -20,6 +23,17 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --trailing-comma es5 --single-quote --write",
+      "git add"
+    ]
   },
   "browserslist": {
     "production": [
