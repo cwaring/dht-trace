@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from 'styled-components'
 import {
   space,
   color,
@@ -6,8 +6,9 @@ import {
   width,
   fontWeight,
   lineHeight,
-  grid
-} from "styled-system";
+  grid,
+  system
+} from 'styled-system'
 
 export const Style = createGlobalStyle`
 * { box-sizing: border-box; }
@@ -24,7 +25,7 @@ code {
 font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   monospace;
 }
-`;
+`
 
 export const theme = {
   fontSizes: [12, 14, 16, 24, 32, 48, 64, 96, 128],
@@ -40,15 +41,15 @@ export const theme = {
     256
   ],
   colors: {
-    blue: "#07c",
-    red: "#e10"
+    blue: '#07c',
+    red: '#e10'
   }
-};
+}
 
 export const Root = styled.div`
   font-family: system-ui, sans-serif;
   line-height: 1.5;
-`;
+`
 
 export const Box = styled.div`
   ${space}
@@ -56,21 +57,41 @@ export const Box = styled.div`
   ${fontSize}
   ${color}
   ${grid}
-`;
+`
 Box.propTypes = {
   ...space.propTypes,
   ...width.propTypes,
   ...fontSize.propTypes,
   ...color.propTypes
-};
+}
 
-export const Text = styled.div`
-  ${space}
-  ${fontSize}
-  ${fontWeight}
-  ${lineHeight}
-  ${color}
-`;
+export const Span = styled.div(
+  {
+    display: 'inline-block'
+  },
+  space,
+  width,
+  fontSize,
+  color
+)
+Span.propTypes = {
+  ...space.propTypes,
+  ...width.propTypes,
+  ...fontSize.propTypes,
+  ...color.propTypes
+}
+
+export const Text = styled.div(
+  {
+    display: 'inline-block'
+  },
+  space,
+  fontSize,
+  fontWeight,
+  lineHeight,
+  color,
+  system({ whiteSpace: true })
+)
 
 Text.propTypes = {
   ...space.propTypes,
@@ -78,12 +99,12 @@ Text.propTypes = {
   ...fontWeight.propTypes,
   ...lineHeight.propTypes,
   ...color.propTypes
-};
+}
 
-export const Heading = Text.withComponent("h1");
+export const Heading = Text.withComponent('h1')
 
 Heading.defaultProps = {
   fontSize: 5,
   lineHeight: 1.5,
   m: 0
-};
+}

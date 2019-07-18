@@ -1,22 +1,42 @@
 {
   "name": "dht-trace",
   "version": "0.1.0",
+  "prettier": {
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "semi": false
+  },
   "private": true,
   "dependencies": {
+    "bignumber.js": "^9.0.0",
+    "bs58": "^4.0.1",
+    "multihashing-async": "^0.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
     "styled-components": "^4.3.2",
-    "styled-system": "^5.0.12"
+    "styled-system": "^5.0.15"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier-standard 'src/**/*.{js,jsx,json,css,scss,md}'"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css,scss,md}": [
+      "prettier-standard",
+      "git add"
+    ]
   },
   "browserslist": {
     "production": [
@@ -29,5 +49,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^3.0.0",
+    "lint-staged": "^9.2.0",
+    "prettier-standard": "^9.1.1"
   }
 }
